@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-RELEASE_VERSION ?= v0.6.7.1
+RELEASE_VERSION ?= latest
 
 .PHONY: local-test local-build local-build-static docker-test docker-build docker-build-static build-bats docker-acceptance release update-deps build-single-target
 

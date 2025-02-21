@@ -1,8 +1,8 @@
-FROM alpine:3.20.2 as certs
+FROM --platform=$BUILDPLATFORM alpine:3.21.3 AS certs
 RUN apk add ca-certificates
 
 FROM scratch AS kubeconform
-LABEL org.opencontainers.image.authors="Yann Hamon <yann@mandragor.org>" \
+LABEL org.opencontainers.image.authors="Redacid <sr@ios.in.ua>" \
       org.opencontainers.image.source="https://github.com/redacid/kubeconform/" \
       org.opencontainers.image.description="A Kubernetes manifests validation tool" \
       org.opencontainers.image.documentation="https://github.com/redacid/kubeconform/" \

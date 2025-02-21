@@ -1,3 +1,4 @@
+version: 2
 project_name: kubeconform
 builds:
   - main: ./cmd/kubeconform
@@ -11,7 +12,7 @@ builds:
       - linux
       - darwin
     goarch:
-      - 386
+      - "386"
       - amd64
       - arm
       - arm64
@@ -24,10 +25,10 @@ builds:
       - -X main.version={{.Tag}}
 
 archives:
-  - format: tar.gz
+  - formats: [ 'tar.gz' ]
     format_overrides:
       - goos: windows
-        format: zip
+        formats: [ 'zip' ]
     name_template: "{{ .ProjectName  }}-{{ .Os  }}-{{ .Arch  }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
 
 dockers:
@@ -42,16 +43,6 @@ dockers:
     goos: linux
     goarch: amd64
   - image_templates:
-      - 'ghcr.io/{{.Env.GIT_OWNER}}/kubeconform:{{ .Tag }}-arm64'
-      - 'ghcr.io/{{.Env.GIT_OWNER}}/kubeconform:latest-arm64'
-    dockerfile: Dockerfile
-    use: buildx
-    build_flag_templates:
-      - "--pull"
-      - "--platform=linux/arm64"
-    goos: linux
-    goarch: arm64
-  - image_templates:
       - 'ghcr.io/{{.Env.GIT_OWNER}}/kubeconform:{{ .Tag }}-amd64-alpine'
       - 'ghcr.io/{{.Env.GIT_OWNER}}/kubeconform:latest-amd64-alpine'
     dockerfile: Dockerfile-alpine
@@ -62,16 +53,27 @@ dockers:
     goos: linux
     goarch: amd64
   - image_templates:
+      - 'ghcr.io/{{.Env.GIT_OWNER}}/kubeconform:{{ .Tag }}-arm64'
+      - 'ghcr.io/{{.Env.GIT_OWNER}}/kubeconform:latest-arm64'
+    dockerfile: Dockerfile
+    use: buildx
+    build_flag_templates:
+      - "--debug"
+      - "--pull"
+      - "--platform=linux/arm64"
+    goos: linux
+    goarch: arm64
+  - image_templates:
       - 'ghcr.io/{{.Env.GIT_OWNER}}/kubeconform:{{ .Tag }}-arm64-alpine'
       - 'ghcr.io/{{.Env.GIT_OWNER}}/kubeconform:latest-arm64-alpine'
     dockerfile: Dockerfile-alpine
     use: buildx
     build_flag_templates:
+      - "--debug"
       - "--pull"
       - "--platform=linux/arm64"
     goos: linux
     goarch: arm64
-
 docker_manifests:
   - name_template: 'ghcr.io/{{.Env.GIT_OWNER}}/kubeconform:{{ .Tag }}'
     image_templates:
@@ -94,7 +96,7 @@ checksum:
   name_template: 'CHECKSUMS'
 
 snapshot:
-  name_template: "{{ .Tag }}-next"
+  version_template: "{{ .Tag }}-next"
 
 changelog:
   sort: asc

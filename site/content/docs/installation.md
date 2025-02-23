@@ -8,11 +8,11 @@ weight: 2
 
 ## Linux
 
-Download the latest release from our [release page](https://github.com/yannh/kubeconform/releases).
+Download the latest release from our [release page](https://github.com/redacid/kubeconform/releases).
 
 For example, for Linux on x86_64 architecture:
 
-{{< prism >}}curl -L https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xvzf - && \
+{{< prism >}}curl -L https://github.com/redacid/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xvzf - && \
 sudo mv kubeconform /usr/local/bin/
 {{< /prism >}}
 
@@ -25,4 +25,4 @@ Kubeconform is available to install using [Homebrew](https://brew.sh/):
 
 ## Windows
 
-Download the latest release from our [release page](https://github.com/yannh/kubeconform/releases).
+Download the latest release from our [release page](https://github.com/redacid/kubeconform/releases).

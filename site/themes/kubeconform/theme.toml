@@ -3,9 +3,9 @@
 
 name = "localhost"
 license = "MIT"
-licenselink = "https://github.com/yannh/kubeconform/themes/kubeconform/LICENSE"
+licenselink = "https://github.com/redacid/kubeconform/themes/kubeconform/LICENSE"
 description = "Hugo template for kubeconform"
-homepage = "http://github.com/yannh/kubeconform/site/theme/kubeconform/"
+homepage = "https://github.com/redacid/kubeconform/site/theme/kubeconform/"
 tags = []
 features = []
 min_version = "0.0.1"

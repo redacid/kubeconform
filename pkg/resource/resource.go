@@ -108,7 +108,7 @@ func (res *Resource) SignatureFromMap(m map[string]interface{}) (*Signature, err
 }
 
 // Resources returns a list of resources if the resource is of type List, a single resource otherwise
-// See https://github.com/yannh/kubeconform/issues/53
+// See https://github.com/redacid/kubeconform/issues/53
 func (res *Resource) Resources() []Resource {
 	resources := []Resource{}
 	if s, err := res.Signature(); err == nil && strings.ToLower(s.Kind) == "list" {

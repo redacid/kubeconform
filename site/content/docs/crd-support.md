@@ -8,7 +8,7 @@ weight: 4
 
 When the `-schema-location` parameter is not used, or set to "default", kubeconform will default to downloading
 schemas from `https://github.com/yannh/kubernetes-json-schema`. Kubeconform however supports passing one, or multiple,
-schemas locations - HTTP(s) URLs, or local filesystem paths, in which case it will lookup for schema definitions
+schemas locations - HTTP(s) URLs, or local filesystem paths, in which case it will look up for schema definitions
 in each of them, in order, stopping as soon as a matching file is found.
 
 * If the -schema-location value does not end with '.json', Kubeconform will assume filenames / a file

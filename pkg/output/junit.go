@@ -13,7 +13,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/yannh/kubeconform/pkg/validator"
+	"github.com/redacid/kubeconform/pkg/validator"
 )
 
 type TestSuiteCollection struct {
@@ -48,7 +48,7 @@ type TestCase struct {
 	XMLName   xml.Name         `xml:"testcase"`
 	Name      string           `xml:"name,attr"`
 	ClassName string           `xml:"classname,attr"`
-	Time      int              `xml:"time,attr"` // Optional, but for Buildkite support  https://github.com/yannh/kubeconform/issues/127
+	Time      int              `xml:"time,attr"` // Optional, but for Buildkite support  https://github.com/redacid/kubeconform/issues/127
 	Skipped   *TestCaseSkipped `xml:"skipped,omitempty"`
 	Error     *TestCaseError   `xml:"error,omitempty"`
 	Failure   []TestCaseError  `xml:"failure,omitempty"`

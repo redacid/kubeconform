@@ -16,7 +16,7 @@ setup() {
 
 @test "Should generate expected prometheus resource from an HTTPS resource while disable ssl env var is set" {
   run export DISABLE_SSL_CERT_VALIDATION=true
-  run ./openapi2jsonschema.py https://raw.githubusercontent.com/yannh/kubeconform/aebc298047c386116eeeda9b1ada83671a58aedd/scripts/fixtures/prometheus-operator-0prometheusCustomResourceDefinition.yaml
+  run ./openapi2jsonschema.py https://raw.githubusercontent.com/redacid/kubeconform/aebc298047c386116eeeda9b1ada83671a58aedd/scripts/fixtures/prometheus-operator-0prometheusCustomResourceDefinition.yaml
   [ "$status" -eq 0 ]
   [ "$output" = "JSON schema written to prometheus_v1.json" ]
   run diff prometheus_v1.json ./fixtures/prometheus_v1-expected.json
@@ -50,7 +50,7 @@ setup() {
 }
 
 @test "Should generate expected prometheus resource from an HTTP resource" {
-  run ./openapi2jsonschema.py https://raw.githubusercontent.com/yannh/kubeconform/aebc298047c386116eeeda9b1ada83671a58aedd/scripts/fixtures/prometheus-operator-0prometheusCustomResourceDefinition.yaml
+  run ./openapi2jsonschema.py https://raw.githubusercontent.com/redacid/kubeconform/aebc298047c386116eeeda9b1ada83671a58aedd/scripts/fixtures/prometheus-operator-0prometheusCustomResourceDefinition.yaml
   [ "$status" -eq 0 ]
   [ "$output" = "JSON schema written to prometheus_v1.json" ]
   run diff prometheus_v1.json ./fixtures/prometheus_v1-expected.json

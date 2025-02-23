@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/yannh/kubeconform/pkg/validator"
+	"github.com/redacid/kubeconform/pkg/validator"
 )
 
 type oresult struct {

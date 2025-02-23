@@ -6,13 +6,14 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"golang.org/x/text/language"
+	"golang.org/x/text/message"
 	"io"
-
-	jsonschema "github.com/santhosh-tekuri/jsonschema/v5"
-	_ "github.com/santhosh-tekuri/jsonschema/v5/httploader"
-	"github.com/yannh/kubeconform/pkg/cache"
-	"github.com/yannh/kubeconform/pkg/registry"
-	"github.com/yannh/kubeconform/pkg/resource"
+	//_ "github.com/santhosh-tekuri/jsonschema/cmd/jv"
+	"github.com/redacid/kubeconform/pkg/cache"
+	"github.com/redacid/kubeconform/pkg/registry"
+	"github.com/redacid/kubeconform/pkg/resource"
+	jsonschema "github.com/santhosh-tekuri/jsonschema/v6"
 	"sigs.k8s.io/yaml"
 )
 
@@ -197,9 +198,13 @@ func (val *v) ValidateResource(res resource.Resource) Result {
 		var e *jsonschema.ValidationError
 		if errors.As(err, &e) {
 			for _, ve := range e.Causes {
+				path := ""
+				for _, f := range ve.InstanceLocation {
+					path = path + "/" + f
+				}
 				validationErrors = append(validationErrors, ValidationError{
-					Path: ve.InstanceLocation,
-					Msg:  ve.Message,
+					Path: path,
+					Msg:  ve.LocalizedError(message.NewPrinter(language.English)),
 				})
 			}
 
@@ -256,9 +261,14 @@ func downloadSchema(registries []registry.Registry, kind, version, k8sVersion st
 	for _, reg := range registries {
 		path, schemaBytes, err = reg.DownloadSchema(kind, version, k8sVersion)
 		if err == nil {
+			s, err := jsonschema.UnmarshalJSON(bytes.NewReader(schemaBytes))
+			if err != nil {
+				continue
+			}
 			c := jsonschema.NewCompiler()
-			c.Draft = jsonschema.Draft4
-			if err := c.AddResource(path, bytes.NewReader(schemaBytes)); err != nil {
+			//c.Draft = jsonschema.Draft4
+			c.DefaultDraft(jsonschema.Draft4)
+			if err := c.AddResource(path, s); err != nil {
 				continue
 			}
 			schema, err := c.Compile(path)

@@ -9,7 +9,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/yannh/kubeconform/pkg/resource"
+	"github.com/redacid/kubeconform/pkg/resource"
 )
 
 func TestFromStream(t *testing.T) {

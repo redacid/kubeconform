@@ -11,7 +11,7 @@ import (
 	"time"
 
 	retryablehttp "github.com/hashicorp/go-retryablehttp"
-	"github.com/yannh/kubeconform/pkg/cache"
+	"github.com/redacid/kubeconform/pkg/cache"
 )
 
 type httpGetter interface {

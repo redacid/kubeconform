@@ -1,10 +1,10 @@
 <img width="50%" alt="Kubeconform-GitHub-Hero" src="https://user-images.githubusercontent.com/19731161/142411871-f695e40c-bfa8-43ca-97c0-94c256749732.png">
 <hr>
 
-[![Build status](https://github.com/yannh/kubeconform/actions/workflows/main.yml/badge.svg)](https://github.com/yannh/kubeconform/actions?query=branch%3Amaster)
+[![Build status](https://github.com/redacid/kubeconform/actions/workflows/main.yml/badge.svg)](https://github.com/redacid/kubeconform/actions?query=branch%3Amaster)
 [![Homebrew](https://img.shields.io/badge/dynamic/json.svg?url=https://formulae.brew.sh/api/formula/kubeconform.json&query=$.versions.stable&label=homebrew)](https://formulae.brew.sh/formula/kubeconform)
-[![Go Report card](https://goreportcard.com/badge/github.com/yannh/kubeconform)](https://goreportcard.com/report/github.com/yannh/kubeconform)
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/yannh/kubeconform/pkg/validator)](https://pkg.go.dev/github.com/yannh/kubeconform/pkg/validator)
+[![Go Report card](https://goreportcard.com/badge/github.com/redacid/kubeconform)](https://goreportcard.com/report/github.com/redacid/kubeconform)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/redacid/kubeconform/pkg/validator)](https://pkg.go.dev/github.com/redacid/kubeconform/pkg/validator)
 
 `Kubeconform` is a Kubernetes manifest validation tool. Incorporate it into your CI, or use it locally to validate your Kubernetes configuration!
 
@@ -71,7 +71,7 @@ that is more meticulously kept up-to-date, and contains schemas for all recent v
 
 ### Limits of Kubeconform validation
 
-`Kubeconform`, similar to `kubeval`, only validates manifests using the official Kubernetes OpenAPI specifications. The Kubernetes controllers still perform additional server-side validations that are not part of the OpenAPI specifications. Those server-side validations are not covered by `Kubeconform` (examples: [#65](https://github.com/yannh/kubeconform/issues/65), [#122](https://github.com/yannh/kubeconform/issues/122), [#142](https://github.com/yannh/kubeconform/issues/142)). You can use a 3rd-party tool or the `kubectl --dry-run=server` command to fill the missing (validation) gap.
+`Kubeconform`, similar to `kubeval`, only validates manifests using the official Kubernetes OpenAPI specifications. The Kubernetes controllers still perform additional server-side validations that are not part of the OpenAPI specifications. Those server-side validations are not covered by `Kubeconform` (examples: [#65](https://github.com/redacid/kubeconform/issues/65), [#122](https://github.com/redacid/kubeconform/issues/122), [#142](https://github.com/redacid/kubeconform/issues/142)). You can use a 3rd-party tool or the `kubectl --dry-run=server` command to fill the missing (validation) gap.
 
 ## Installation
 
@@ -87,16 +87,16 @@ If you are a Windows user, you can install with [winget](https://learn.microsoft
 winget install YannHamon.kubeconform
 ```
 
-You can also download the latest version from the [release page](https://github.com/yannh/kubeconform/releases).
+You can also download the latest version from the [release page](https://github.com/redacid/kubeconform/releases).
 
 Another way of installation is via Golang's package manager:
 
 ```bash
 # With a specific version tag
-$ go install github.com/yannh/kubeconform/cmd/kubeconform@v0.4.13
+$ go install github.com/redacid/kubeconform/cmd/kubeconform@v0.4.13
 
 # Latest version
-$ go install github.com/yannh/kubeconform/cmd/kubeconform@latest
+$ go install github.com/redacid/kubeconform/cmd/kubeconform@latest
 ```
 
 ## Usage
@@ -308,7 +308,7 @@ jobs:
       - name: login to Github Packages
         run: echo "${{ github.token }}" | docker login https://ghcr.io -u ${GITHUB_ACTOR} --password-stdin
       - uses: actions/checkout@v2
-      - uses: docker://ghcr.io/yannh/kubeconform:latest
+      - uses: docker://ghcr.io/redacid/kubeconform:latest
         with:
           entrypoint: '/kubeconform'
           args: "-summary -output json kubeconfigs/"
@@ -328,13 +328,13 @@ The Kubeconform Docker image can be used in Gitlab-CI. Here is an example of a G
 lint-kubeconform:
   stage: validate
   image:
-    name: ghcr.io/yannh/kubeconform:latest-alpine
+    name: ghcr.io/redacid/kubeconform:latest-alpine
     entrypoint: [""]
   script:
   - /kubeconform -summary -output json kubeconfigs/
 ```
 
-See [issue 106](https://github.com/yannh/kubeconform/issues/106) for more details.
+See [issue 106](https://github.com/redacid/kubeconform/issues/106) for more details.
 
 ## Helm charts
 
@@ -350,7 +350,7 @@ hook](https://pre-commit.com/).
 `Kubeconform` contains a package that can be used as a library.
 An example of usage can be found in [examples/main.go](examples/main.go)
 
-Additional documentation on [pkg.go.dev](https://pkg.go.dev/github.com/yannh/kubeconform/pkg/validator)
+Additional documentation on [pkg.go.dev](https://pkg.go.dev/github.com/redacid/kubeconform/pkg/validator)
 
 ## Credits
 

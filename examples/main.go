@@ -4,7 +4,7 @@ package main
 // considered stable
 
 import (
-	"github.com/yannh/kubeconform/pkg/validator"
+	"github.com/redacid/kubeconform/pkg/validator"
 	"log"
 	"os"
 )

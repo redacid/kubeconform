@@ -7,7 +7,7 @@ import (
 
 	"sigs.k8s.io/yaml"
 
-	"github.com/yannh/kubeconform/pkg/resource"
+	"github.com/redacid/kubeconform/pkg/resource"
 )
 
 func TestSignatureFromBytes(t *testing.T) {

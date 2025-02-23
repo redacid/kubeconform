@@ -18,7 +18,7 @@ jobs:
       - name: login to Github Packages
         run: echo "${{ github.token }}" | docker login https://ghcr.io -u ${GITHUB_ACTOR} --password-stdin
       - uses: actions/checkout@v2
-      - uses: docker://ghcr.io/yannh/kubeconform:master
+      - uses: docker://ghcr.io/redacid/kubeconform:master
         with:
           entrypoint: '/kubeconform'
           args: "-summary -output json kubeconfigs/"

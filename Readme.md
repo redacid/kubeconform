@@ -206,6 +206,14 @@ $ HTTPS_PROXY=proxy.local bin/kubeconform fixtures/valid.yaml
 ```
 
 ## Overriding schemas location
+New feature addeded  
+Environment variable KUBECONFORM_SCHEMA_LOCATION with comma-separated list of values  
+for example:  
+`KUBECONFORM_SCHEMA ?= https://raw.githubusercontent.com/redacid/kubernetes-json-schema/refs/heads/master/{{.NormalizedKubernetesVersion}}-standalone{{.StrictSuffix}}/{{.ResourceKind}}{{.KindSuffix}}.json`
+`KUBECONFORM_SCHEMA_CRD ?= https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json`  
+`KUBECONFORM_SCHEMA_LOCATION ?= $(KUBECONFORM_SCHEMA),$(KUBECONFORM_SCHEMA_CRD)`  
+This list append to `--schema-location`  
+with --verbose flag print list of all schema locations  
 
 When the `-schema-location` parameter is not used, or set to `default`, kubeconform will default to downloading
 schemas from https://github.com/yannh/kubernetes-json-schema. Kubeconform however supports passing one, or multiple,
